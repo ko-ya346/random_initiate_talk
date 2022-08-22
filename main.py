@@ -18,16 +18,9 @@ KEY = st.secrets.GoogleDriveApiKey.key
 
 
 @st.cache
-def load_data(debug=False):
-    """
-    Args:
-        url: google drive
-    """
+def load_data():
     path = f"https://www.googleapis.com/drive/v3/files/{URL.split('/')[-2]}?alt=media&key={KEY}"
     df = pd.read_csv(path)
-
-    if debug:
-        df = df.iloc[-10000:].reset_index(drop=True)
 
     return df
 
@@ -35,9 +28,7 @@ def load_data(debug=False):
 @st.cache
 def load_upload_data(uploaded_file):
     try:
-        st.write(uploaded_file)
         df = pd.read_csv(uploaded_file)
-        print(df.columns.values)
         assert list(df.columns.values) == [
             "番組名",
             "MC",
@@ -66,7 +57,7 @@ st.subheader("Initiate Talk Data")
 AgGrid(df, fit_columns_on_grid_load=True)  # 列幅自動調整
 
 random_index = None
-if st.button("ランダムに話題を振ります"):
+if st.button("クリックするとランダムに話題を振ります"):
     random_index = np.random.randint(0, df.shape[1] - 1)
 
 
