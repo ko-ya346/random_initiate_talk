@@ -58,7 +58,7 @@ AgGrid(df, fit_columns_on_grid_load=True)  # 列幅自動調整
 
 random_index = None
 if st.button("クリックするとランダムに話題を振ります"):
-    random_index = np.random.randint(0, df.shape[0] - 1)
+    random_index = np.random.randint(0, df.shape[0])
 
 
 if random_index is not None:
