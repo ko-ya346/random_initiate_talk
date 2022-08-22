@@ -46,8 +46,8 @@ uploaded_df = load_upload_data(uploaded_file)
 if uploaded_df is None:
     st.write("アップロードしたファイルを読み込めませんでした")
 
-using_data = st.radio("どのデータを使う？", ("デフォルトのデータ", "アップロードしたデータ"))
-if using_data == "デフォルトのデータ" or uploaded_df is None:
+using_data = st.radio("どのデータを使う？", ("サンプルデータ", "アップロードしたデータ"))
+if using_data == "サンプルデータ" or uploaded_df is None:
     df = load_data()
 else:
     df = uploaded_df
